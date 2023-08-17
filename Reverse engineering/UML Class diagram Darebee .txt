@@ -1,0 +1,120 @@
+@Создано на базе сервиса PlantText https://www.planttext.com@
+
+@startuml
+
+skin rose
+
+title Classes - Darebee
+
+
+abstract class person{
+}
+class usr {
+ -login
+ -password
+ -id
+ #ip
+ +first name
+ +last name
+ +age
+ +sex/gender
+ -add traning in bookmarks()
+ #watch traning ()
+ #add timer ()
+ #add circle ()
+ #filter traning
+ #danate
+ +add topic()
+ +add text()
+ -massege to()
+ +edit text()
+ +edit topic()
+ +add media/img () 
+ +add comment ()
+ +edit comment ()
+ }
+ class guest{
+#ip
+#watch traning()
+#watch traning ()
+#add timer ()
+#add circle ()
+#filter traning
+#danate
+}
+class admin{
+-login
+ -password
+ -id
+ #ip
+ +first name
+ +last name
+ +age
+ +sex/gender
+ -add traning in bookmarks()
+ #watch traning ()
+ #add timer ()
+ #add circle ()
+ #filter traning
+ #danate
+ +add topic()
+ +add text()
+ -massege to()
+ +edit text()
+ +edit topic()
+ +add media/img () 
+ +add comment ()
+ +edit comment ()
+ #ban user ()
+ #del user text()
+ #det user topic()
+ #add heading()
+ #edit heading()
+ #del heading ()
+}
+class post{
++title
++time
++url
++state
+}
+class comment{
++date
++time
++text
+}
+class training_card{
++image
++timer
++circle
++bookmark
+}
+class forum{
++post
++comment
+}
+class catalog{
+}
+circle serch
+circle filter
+
+
+usr<|- guest
+admin<|- usr
+guest"n"->"n"training_card:watch
+guest"n"->"n"forum:watch
+usr"n"-->"n"post: author
+usr"n"-->"n"comment: author
+post"1"*-"n"comment: contains
+admin"n"-->"n"training_card: author
+forum"1"*-"n"post: contains
+usr"n"-->"n"training_card: watch
+training_card"n"*-"1"catalog
+catalog--filter
+catalog-serch
+usr..filter: use
+usr..serch: use
+admin"n"---->"1"forum: administration
+admin"n"---->"1"catalog: administration
+
+@enduml
